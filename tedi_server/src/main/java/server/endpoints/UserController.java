@@ -246,7 +246,6 @@ public class UserController {
 	}
 	
 	//add a new connection between active user and the one specified by the parameter
-	//TODO verify that connected user is not admin
 	@PostMapping("/connect")
 	public ResponseEntity<Object> connect(@RequestParam String email) {
 		
