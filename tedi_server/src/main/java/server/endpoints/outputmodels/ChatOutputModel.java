@@ -1,6 +1,7 @@
 package server.endpoints.outputmodels;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ChatOutputModel {
@@ -30,6 +31,14 @@ public class ChatOutputModel {
 	
 	public void setChattingUser(UserOutputModel chattingUser) {
 		this.chattingUser = chattingUser;
+	}
+
+	public String getLastMessageDate() {
+		if (!messages.isEmpty()) {
+			return messages.get(0).getTimestamp();
+		} else {
+			return "";
+		}
 	}
 	
 }

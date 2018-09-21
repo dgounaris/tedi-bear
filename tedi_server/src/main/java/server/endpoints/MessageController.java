@@ -19,7 +19,10 @@ import server.services.MessageService;
 import server.utilities.Validator;
 
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class MessageController {
@@ -86,6 +89,7 @@ public class MessageController {
 		newMessage.setSender(currUser);
 		newMessage.setReceiver(otherUser);
 		newMessage.setMessage(input.getMessage());
+		newMessage.setDateTime(new Date());
 		chatRepo.save(newMessage);
 		return new ResponseEntity<>(HttpStatus.OK);
 		
@@ -131,6 +135,9 @@ public class MessageController {
 			}
 			chatOutputModels.add(chatOutput);
 		}
+		chatOutputModels.stream()
+				.sorted(Comparator.comparing(ChatOutputModel::getLastMessageDate))
+				.collect(Collectors.toList());
 		output.setChats(chatOutputModels);
 		lastChatOpenedOutputModel.setId(currUser.getLastChatOpenedUserId());
 		output.setLastOpened(lastChatOpenedOutputModel);
