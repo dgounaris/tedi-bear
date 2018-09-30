@@ -5,9 +5,9 @@
 		$scope.changeActiveLink("profile-link");
 
         $scope.tempUser = angular.copy(user);
-		$scope.isEducationPublic = true;
-		$scope.isExperiencePublic = true;
-		$scope.isSkillsPublic = true;
+		$scope.isEducationPublic = $scope.tempUser.educationPublic;
+		$scope.isExperiencePublic = $scope.tempUser.experiencePublic;
+		$scope.isSkillsPublic = $scope.tempUser.skillsPublic;
 
 		$scope.showConnectionProfile = function(connectionId) {
 			window.location.href ='#!/profile/' + connectionId;
